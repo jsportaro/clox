@@ -2,8 +2,11 @@
 #include <clox.h>
 #include <common.h>
 #include <debug.h>
+#include <vm.h>
 
 void run(void) {
+
+  initVM();
   Chunk chunk;
   initChunk(&chunk);
 
@@ -12,6 +15,7 @@ void run(void) {
   writeChunk(&chunk, constant, 123);
   writeChunk(&chunk, OP_RETURN, 123);
 
-  disassembleChunk(&chunk, "test chunk");
+  interpret(&chunk);
+  freeVM();
   freeChunk(&chunk);
 }
