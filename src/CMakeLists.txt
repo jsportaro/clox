@@ -1,9 +1,19 @@
-add_compile_options (-pthread -Wall -pedantic -Werror)
+#add_compile_options (-pthread -Wall -pedantic -Werror)
 
-set (COMMON_SOURCE cloxlib.c)
+set (COMMON_SOURCE 
+    libclox.c
+    clox_memory.c
+    chunk.c
+    debug.c
+    value.c
+)
 
-add_library(cloxlib ${COMMON_SOURCE})
-target_include_directories(cloxlib PUBLIC include)
+add_library(libclox ${COMMON_SOURCE})
+target_include_directories(
+    libclox 
+    PUBLIC 
+    "include"
+)
 
 add_executable (clox main.c)
-target_link_libraries (clox PRIVATE cloxlib)
+target_link_libraries (clox PRIVATE libclox)

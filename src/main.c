@@ -1,12 +1,10 @@
-#include <cloxlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
-{
-    run();
+#include <clox.h>
 
-    printf("clox runtime\n");
+int main() {
+  run();
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
