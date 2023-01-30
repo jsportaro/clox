@@ -6,6 +6,7 @@ set (COMMON_SOURCE
     chunk.c
     debug.c
     value.c
+    vm.c
 )
 
 add_library(libclox ${COMMON_SOURCE})
