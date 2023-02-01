@@ -3,6 +3,10 @@
     "files.associations": {
         "chunk.h": "c",
         "memory.h": "c",
-        "cloxlib.h": "c"
+        "cloxlib.h": "c",
+        "vm.h": "c",
+        "common.h": "c",
+        "stdbool.h": "c",
+        "debug.h": "c"
     }
 }
