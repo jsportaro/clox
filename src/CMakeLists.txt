@@ -4,7 +4,9 @@ set (COMMON_SOURCE
     libclox.c
     clox_memory.c
     chunk.c
+    compiler.c
     debug.c
+    scanner.c
     value.c
     vm.c
 )
