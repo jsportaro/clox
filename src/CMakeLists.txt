@@ -6,8 +6,9 @@ set (COMMON_SOURCE
     chunk.c
     compiler.c
     debug.c
-    object.c
+    object.c 
     scanner.c
+    table.c
     value.c
     vm.c
 )
