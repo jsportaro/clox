@@ -13,12 +13,12 @@ set (COMMON_SOURCE
     vm.c
 )
 
-add_library(libclox ${COMMON_SOURCE})
+add_library(runtime ${COMMON_SOURCE})
 target_include_directories(
-    libclox 
+    runtime
     PUBLIC 
     "include"
 )
 
 add_executable (clox main.c)
-target_link_libraries (clox PRIVATE libclox)
+target_link_libraries (clox PRIVATE runtime)
