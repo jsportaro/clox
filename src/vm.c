@@ -29,7 +29,7 @@ static void runtimeError(const char *format, ...) {
 void initVM() {
   resetStack();
   vm.objects = NULL;
-  
+
   initTable(&vm.globals);
   initTable(&vm.strings);
 }
@@ -114,17 +114,22 @@ static InterpretResult run() {
     case OP_POP:
       pop();
       break;
+    case OP_GET_LOCAL: {
+      uint8_t slot = READ_BYTE();
+      push(vm.stack[slot]);
+      break;
+    }
     case OP_GET_GLOBAL: {
-        ObjString *name = READ_STRING();
-        Value value;
+      ObjString *name = READ_STRING();
+      Value value;
 
-        if (!tableGet(&vm.globals, name, &value)) {
-            runtimeError("Undefined variable '%s'.", name->chars);
-            return INTERPRET_RUNTIME_ERROR;
-        }
+      if (!tableGet(&vm.globals, name, &value)) {
+        runtimeError("Undefined variable '%s'.", name->chars);
+        return INTERPRET_RUNTIME_ERROR;
+      }
 
-        push(value);
-        break;
+      push(value);
+      break;
     }
     case OP_DEFINE_GLOBAL: {
       ObjString *name = READ_STRING();
@@ -132,14 +137,19 @@ static InterpretResult run() {
       pop();
       break;
     }
-    case OP_SET_GLOBAL:{
-        ObjString* name = READ_STRING();
-        if (tableSet(&vm.globals, name, peek(0))) {
-            tableDelete(&vm.globals, name);
-            runtimeError("Undefined variable '%s'.", name->chars);
-            return INTERPRET_RUNTIME_ERROR;
-        }
-        break;
+    case OP_SET_LOCAL: {
+      uint8_t slot = READ_BYTE();
+      vm.stack[slot] = peek(0);
+      break;
+    }
+    case OP_SET_GLOBAL: {
+      ObjString *name = READ_STRING();
+      if (tableSet(&vm.globals, name, peek(0))) {
+        tableDelete(&vm.globals, name);
+        runtimeError("Undefined variable '%s'.", name->chars);
+        return INTERPRET_RUNTIME_ERROR;
+      }
+      break;
     }
     case OP_EQUAL: {
       Value b = pop();
