@@ -1,9 +1,9 @@
 CC = clang
-CFLAGS = -I.
+CFLAGS = -I. -Wall -Wextra
 DEPS = common.h
 
-clox: clox.o
+clox: clox.o chunk.o memory.o
 
 .PHONY: clean
 clean:
-	rm -f *.o
+	rm -f *.o clox

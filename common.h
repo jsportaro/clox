@@ -5,4 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#ifndef UNUSED
+#  define UNUSED(x) (void)(x)
+#endif
+
 #endif
