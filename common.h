@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#define DEBUG_TRACE_EXECUTION
+
 #ifndef UNUSED
 #  define UNUSED(x) (void)(x)
 #endif

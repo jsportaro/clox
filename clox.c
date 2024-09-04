@@ -18,9 +18,14 @@ int main(int argc, const char* argv[]) {
     writeChunk(&chunk, OP_RETURN, 123);
 
     disassembleChunk(&chunk, "TEST CHUNK");
+
+    printf("== Running interpreter ==\n\n");
+
     interpret(&chunk);
     freeVM();
     freeChunk(&chunk);
+
+    printf("\n\n== End                 ==\n");
 
     return 0;
 }
