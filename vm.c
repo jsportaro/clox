@@ -127,6 +127,7 @@ InterpretResult interpret(const char* source) {
 
     if (!compile(source, &chunk)) {
         freeChunk(&chunk);
+        return INTERPRET_COMPILE_ERROR;
     }
 
     vm.chunk = &chunk;
