@@ -165,6 +165,10 @@ static uint8_t parseVariable(const char* errorMessage) {
     return identifierConstanct(&parser.previous);
 }
 
+static void defineVariable(uint8_t global) {
+    emitBytes(OP_DEFINE_GLOBAL, global);
+}
+
 static void binary() {
     TokenType operatorType = parser.previous.type;
     ParseRule* rule = getRule(operatorType);
