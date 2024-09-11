@@ -1,0 +1,8 @@
+{
+    var a = "A";
+    {
+        var b = "B";
+        print a;
+        print b;
+    }
+}

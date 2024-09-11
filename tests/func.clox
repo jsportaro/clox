@@ -1,0 +1,8 @@
+fun testFunc(a) {
+  print "From function: " + a;
+
+  return "bye";
+}
+
+var bye = testFunc("Yes we are!");
+print bye;
