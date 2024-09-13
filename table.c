@@ -146,3 +146,11 @@ ObjString* tableFindString(Table* table, const char* chars, int length, uint32_t
         index = (index + 1) % table->capactiy;
     }
 }
+
+void markTable(Table* table) {
+    for (int i = 0; i < table->capactiy; i++) {
+        Entry* entry = &table->entries[i];
+        markObject((Obj*)entry->key);
+        markValue(entry->value);
+    }
+}
