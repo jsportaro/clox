@@ -1,0 +1,5 @@
+fun myFun() {
+    print "a";
+}
+
+var annon = myFun;
