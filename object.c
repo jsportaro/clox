@@ -31,6 +31,13 @@ ObjClass* newClass(ObjString* name) {
     return klass;
 }
 
+ObjInstance* newInstance(ObjClass* klass) {
+    ObjInstance* instance = ALLOCATE_OBJ(ObjInstance, OBJ_INSTANCE);
+    instance->klass = klass;
+    initTable(&instance->fields);
+    return instance;
+}
+
 ObjClosure* newClosure(ObjFunction* function) {
     ObjUpvalue** upvalues = ALLOCATE(ObjUpvalue*, function->upvalueCount);
 
@@ -135,6 +142,10 @@ void printObject(Value value) {
             break;
         case OBJ_FUNCTION:
             printFunction(AS_FUNCTION(value));
+            break;
+        case OBJ_INSTANCE:
+            printf("%s instance",
+                   AS_INSTANCE(value)->klass->name->chars);
             break;
         case OBJ_NATIVE:
             printf("<native fn>");
