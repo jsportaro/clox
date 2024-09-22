@@ -25,6 +25,12 @@ static Obj* allocateObject(size_t size, ObjType type) {
     return object;
 }
 
+ObjClass* newClass(ObjString* name) {
+    ObjClass* klass = ALLOCATE_OBJ(ObjClass, OBJ_CLASS);
+    klass->name = name;
+    return klass;
+}
+
 ObjClosure* newClosure(ObjFunction* function) {
     ObjUpvalue** upvalues = ALLOCATE(ObjUpvalue*, function->upvalueCount);
 
@@ -62,7 +68,7 @@ static ObjString* allocateString(char* chars, int length, uint32_t hash) {
     push(OBJ_VAL(string));
     tableSet(&vm.strings, string, NIL_VAL);
     pop();
-    
+
     return string;
 }
 
@@ -121,6 +127,9 @@ static void printFunction(ObjFunction* function) {
 void printObject(Value value) {
     Obj* object = AS_OBJ(value);
     switch (object->type) {
+        case OBJ_CLASS:
+            printf("%s", AS_CLASS(value)->name->chars);
+            break;
         case OBJ_CLOSURE:
             printFunction(AS_CLOSURE(value)->function);
             break;
