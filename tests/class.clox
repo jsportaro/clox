@@ -1,1 +1,7 @@
-var pie = Class {};
+class Brunch {
+    bacon() { print "bacon!!!"; }
+    eggs() {}
+}
+
+var brunch = Brunch();
+brunch.bacon();
