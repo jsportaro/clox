@@ -1,7 +1,8 @@
-class Brunch {
-    bacon() { print "bacon!!!"; }
-    eggs() {}
+class Scone {
+  topping(first, second) {
+    print "scone with " + first + " and " + second;
+  }
 }
 
-var brunch = Brunch();
-brunch.bacon();
+var scone = Scone();
+scone.topping("berries", "cream");
