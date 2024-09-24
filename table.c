@@ -82,6 +82,11 @@ static void adjustCapacity(Table* table, int capacity) {
 }
 
 bool tableSet(Table* table, ObjString* key, Value value) {
+    // Note: this was originally (and incorrectly)
+    //   if (table->count + 1 > table->capactiy + TABLE_MAX_LOAD) {
+    //   yes, stupid typo and the math did work out to instigate the bug
+    //   but i thought it OH SHIT
+    //   It rounded to the nearest decimal - verify that
     if (table->count + 1 > table->capactiy * TABLE_MAX_LOAD) {
         int capacity = GROW_CAPACITY(table->capactiy);
         adjustCapacity(table, capacity);
