@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/clox",
-            "args": ["./tests/while.clox"],
+            "args": ["./tests/class.clox"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
