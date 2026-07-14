@@ -1,5 +1,7 @@
 fun myFun() {
-    print "a";
+    print "myFun";
 }
 
 var annon = myFun;
+
+myFun();

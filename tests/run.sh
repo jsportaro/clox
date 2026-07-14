@@ -19,4 +19,6 @@ for FILE in *; do
     fi
 done
 
+rm actual.test
+
 echo $HASERROR
