@@ -17,8 +17,22 @@ static void repl() {
             printf("\n");
             break;
         }
-
-        interpret(line);
+        
+        if (line[0] && line[0] == '\\')
+        {
+            if (line[1] && line[1] == 'q')
+            {
+                exit(EXIT_SUCCESS);
+            }
+            else
+            {
+                printf("Unknown repl command\n");
+            }
+        }
+        else
+        {
+            interpret(line);
+        }
     }
 }
 
